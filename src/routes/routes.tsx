@@ -1,13 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import About from "../pages/About";
-import Contact from "../pages/Contact";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import { adminPaths } from "./admin.routes";
-import { routeGenerator } from "../utils/routesGenerator";
-import { studentPaths } from "./student.routes";
-import { facultyPaths } from "./faculty.routes";
+import About from "../pages/about/About";
+import ContactMain from "../pages/contact/ContactMain";
+import HomeMain from "../pages/homePage/HomeMain";
+import ProductsMain from "../pages/productsPage/ProductsMain";
+import CartMain from "../pages/cartPage/CartMain";
+import CheckOutMain from "../pages/checkoutPage/CheckOutMain";
+import DashboardMain from "../pages/dashboard/DashboardMain";
 
 const router = createBrowserRouter([
   {
@@ -15,38 +14,38 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: "/",
+        element: <HomeMain />,
+      },
+      {
+        path: "home",
+        element: <HomeMain />,
+      },
+      {
+        path: "products",
+        element: <ProductsMain />,
+      },
+      {
+        path: "cart",
+        element: <CartMain />,
+      },
+      {
+        path: "checkout",
+        element: <CheckOutMain />,
+      },
+      {
+        path: "dashboard",
+        element: <DashboardMain />,
+      },
+      {
         path: "about",
         element: <About />,
       },
       {
         path: "contact",
-        element: <Contact />,
+        element: <ContactMain />,
       },
     ],
-  },
-  {
-    path: "/admin",
-    element: <App />,
-    // element: <AdminLayout />, // testing
-    children: routeGenerator(adminPaths),
-  },
-  {
-    path: "/faculty",
-    element: <App />,
-    children: routeGenerator(facultyPaths),
-  },
-  {
-    path: "/student",
-    element: <App />,
-    children: routeGenerator(studentPaths),
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
   },
 ]);
 
