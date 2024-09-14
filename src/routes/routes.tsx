@@ -7,6 +7,7 @@ import ProductsMain from "../pages/productsPage/ProductsMain";
 import CartMain from "../pages/cartPage/CartMain";
 import CheckOutMain from "../pages/checkoutPage/CheckOutMain";
 import DashboardMain from "../pages/dashboard/DashboardMain";
+import NotFound from "../pages/notFound/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,11 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <ContactMain />,
+      },
+
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },

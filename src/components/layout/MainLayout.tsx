@@ -5,7 +5,7 @@ import Footer from "../../pages/homePage/Footer";
 const MainLayout = () => {
   return (
     <div>
-      main layout
+      {/* main layout */}
       <NavBar />
       <Outlet />
       <Footer />
