@@ -5,7 +5,7 @@ const About = () => {
       {/* Blurred Background */}
       <div className="absolute inset-0 bg-contact-bg bg-cover bg-center filter blur-xs"></div>
 
-      <div className="z-10  w-full flex lg:flex-row md:flex-row sm:flex-col flex-col  items-center justify-between">
+      <div className="z-10 w-full flex lg:flex-row md:flex-row sm:flex-col flex-col  items-center xl:justify-between lg:justify-between md:justify-between">
         <div className="xl:w-1/2 lg:w-1/2 md:w-1/2 p-5 flex justify-center items-center">
           <img className="w-[90%]" src={redblackkey} alt="" />
         </div>

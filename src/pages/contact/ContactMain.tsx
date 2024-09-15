@@ -13,7 +13,7 @@ const ContactMain = () => {
       <div className="absolute inset-0 bg-contact-bg bg-cover bg-center filter blur-xs"></div>
 
       <div className="content max-w-4xl text-center z-10">
-        <h2 className="text-3xl font-semibold text-black">Contact Us</h2>
+        <h2 className="text-3xl font-bold text-black">Contact Us</h2>
         <p className="text-black mt-4">
           Please reach out to us if you have any questions or concerns, and we
           will try to get back to you as soon as possible. We respond within two
@@ -23,14 +23,14 @@ const ContactMain = () => {
 
       <div className="container w-full flex justify-center items-center mt-8 flex-wrap z-10">
         {/* Contact Info Section */}
-        <div className="contactInfo w-full lg:w-1/2 flex flex-col items-start space-y-6">
+        <div className="contactInfo w-full lg:w-1/2 flex flex-col items-start space-y-6 my-2">
           <ContactInfo label="Address" value="null" />
           <ContactInfo label="Phone" value="865397865" />
           <ContactInfo label="Email" value="lalmatia27@gmail.com" />
         </div>
 
         {/* Contact Form */}
-        <div className="contactForm w-full lg:w-2/5 bg-white p-8 shadow-lg ">
+        <div className="contactForm w-full lg:w-2/5 mt-4 bg-white p-8 shadow-lg ">
           <form>
             <h2 className="text-2xl font-semibold text-gray-800 mb-6">
               Send Message
