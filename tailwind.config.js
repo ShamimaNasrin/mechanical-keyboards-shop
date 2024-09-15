@@ -2,7 +2,14 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "contact-bg": "url('/src/assets/images/bgkey.jpg')",
+      },
+      blur: {
+        xs: "2px",
+      },
+    },
   },
   plugins: [],
 };
