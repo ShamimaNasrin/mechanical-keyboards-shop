@@ -1,4 +1,3 @@
-// import bg from "../../assets/images/bgkey.jpg";
 import "./contact.css";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
