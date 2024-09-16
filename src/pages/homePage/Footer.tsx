@@ -6,7 +6,7 @@ import { PiInstagramLogo } from "react-icons/pi";
 
 const Footer = () => {
   return (
-    <div className="w-full bottom-0 left-0 z-50 bg-black xl:px-20 lg:px-20 md:px-10 px-7 xl:py-10 lg:py-10 md:py-7 py-5">
+    <div className="w-full bottom-0 left-0 z-50 bg-black xl:px-16 lg:px-16 md:px-10 px-7 xl:py-10 lg:py-10 md:py-7 py-5">
       <div className="flex xl:flex-row lg:flex-row md:flex-row flex-col justify-between items-start py-3 ">
         <div className="xl:mt-1 lg:mt-1 md:mt-1 mt-3 xl:w-1/3 lg:w-1/3 md:w-2/5 ">
           <h1 className="text-lg font-semibold text-white">KeyClicks</h1>

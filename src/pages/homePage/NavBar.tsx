@@ -15,7 +15,7 @@ const NavBar = () => {
 
   return (
     <div className=" shadow-md w-full sticky top-0 left-0 z-50">
-      <div className="md:flex items-center justify-between bg-black py-4 lg:px-20 md:px-10 px-7">
+      <div className="md:flex items-center justify-between bg-black py-4 xl:px-16 lg:px-16 md:px-10 px-7">
         <Link to="/" className="normal-case">
           <div
             className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 

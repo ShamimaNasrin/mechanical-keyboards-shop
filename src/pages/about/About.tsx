@@ -1,7 +1,7 @@
 import redblackkey from "../../assets/images/redblackkey.jpg";
 const About = () => {
   return (
-    <div className=" relative min-h-screen xl:py-12 xl:px-24 lg:py-12 lg:px-24 md:p-8 sm:p-5 p-5 flex">
+    <div className=" relative min-h-screen xl:py-12 xl:px-16 lg:py-12 lg:px-16 md:p-8 sm:p-5 p-5 flex">
       {/* Blurred Background */}
       <div className="absolute inset-0 bg-contact-bg bg-cover bg-center filter blur-xs"></div>
 

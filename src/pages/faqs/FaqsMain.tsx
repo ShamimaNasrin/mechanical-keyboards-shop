@@ -23,7 +23,7 @@ const faqs = [
 
 const FaqsMain = () => {
   return (
-    <div className="bg-zinc-50 w-full xl:px-24 lg:px-24 md:px-20 sm:px-16 px-16 py-16">
+    <div className="bg-zinc-50 w-full xl:px-16 lg:px-16 md:px-16 sm:px-16 px-16 py-16">
       <h2 className="text-3xl font-semibold text-black text-center mb-10">
         FAQs
       </h2>
