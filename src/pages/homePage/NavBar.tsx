@@ -16,13 +16,15 @@ const NavBar = () => {
   return (
     <div className=" shadow-md w-full sticky top-0 left-0 z-50">
       <div className="md:flex items-center justify-between bg-black py-4 lg:px-20 md:px-10 px-7">
-        <div
-          className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
+        <Link to="/" className="normal-case">
+          <div
+            className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
    text-white"
-        >
-          <span className="text-3xl text-indigo-600 mr-1 pt-2">.</span>
-          KeyClicks
-        </div>
+          >
+            <span className="text-3xl text-indigo-600 mr-1 pt-2">.</span>
+            KeyClicks
+          </div>
+        </Link>
 
         <div
           onClick={() => setOpen(!open)}

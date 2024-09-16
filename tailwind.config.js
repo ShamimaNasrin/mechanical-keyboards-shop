@@ -5,6 +5,7 @@ export default {
     extend: {
       backgroundImage: {
         "contact-bg": "url('/src/assets/images/bgkey.jpg')",
+        "hero-bg": "url('/src/assets/images/bannerbg.jpg')",
       },
       blur: {
         xs: "2px",
