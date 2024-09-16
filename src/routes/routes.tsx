@@ -8,6 +8,7 @@ import CartMain from "../pages/cartPage/CartMain";
 import CheckOutMain from "../pages/checkoutPage/CheckOutMain";
 import DashboardMain from "../pages/dashboard/DashboardMain";
 import NotFound from "../pages/notFound/NotFound";
+import FaqsMain from "../pages/faqs/FaqsMain";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <ContactMain />,
+      },
+      {
+        path: "faqs",
+        element: <FaqsMain />,
       },
 
       {
