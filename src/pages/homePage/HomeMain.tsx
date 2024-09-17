@@ -1,4 +1,5 @@
 import AdvertiseService from "./AdvertiseService";
+import FeaturedBrands from "./FeaturedBrands";
 import HeroSection from "./HeroSection";
 
 const HomeMain = () => {
@@ -6,6 +7,7 @@ const HomeMain = () => {
     <div className="bg-zinc-50">
       <HeroSection />
       <AdvertiseService />
+      <FeaturedBrands />
     </div>
   );
 };

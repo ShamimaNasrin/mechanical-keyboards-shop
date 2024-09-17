@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Akko",
+    "url": "https://akkogear.de/",
+    "logo": "/img/brands/akko.webp"
+  },
+  {
+    "name": "MonsGeek",
+    "url": "https://www.monsgeek.com/",
+    "logo": "/img/brands/monsgeek.webp"
+  },
+  {
+    "name": "Cherry",
+    "url": "https://www.cherry.de/",
+    "logo": "/img/brands/mxcherry.webp"
+  },
+  {
+    "name": "CIY",
+    "url": "http://ciy.ltd/",
+    "logo": "/img/brands/ciy.webp"
+  },
+  {
+    "name": "Everglide",
+    "url": "https://everglide.co/",
+    "logo": "/img/brands/everglide.webp"
+  },
+  {
+    "name": "Gateron",
+    "url": "https://www.gateron.co/",
+    "logo": "/img/brands/gateron.webp"
+  },
+  {
+    "name": "James Donkey",
+    "url": "https://gadgetnovabd.com/product/jamesdonkey-a3/",
+    "logo": "/img/brands/jamesdonkey.webp"
+  },
+  {
+    "name": "JWK",
+    "url": "https://mecha.store/collections/jwk",
+    "logo": "/img/brands/jwk.webp"
+  },
+  {
+    "name": "Kailh",
+    "url": "https://www.kailh.net/",
+    "logo": "/img/brands/kailh.webp"
+  },
+  {
+    "name": "KBDfans",
+    "url": "https://kbdfans.com/",
+    "logo": "/img/brands/kbdfans.webp"
+  },
+  {
+    "name": "Keychron",
+    "url": "https://www.keychron.com/",
+    "logo": "/img/brands/keychron.webp"
+  },
+  {
+    "name": "Krytox",
+    "url": "https://www.krytox.com/en",
+    "logo": "/img/brands/krytox.webp"
+  },
+  {
+    "name": "Leobog",
+    "url": "https://leobogtech.com/",
+    "logo": "/img/brands/leobog.webp"
+  },
+  {
+    "name": "TX Keyboard",
+    "url": "https://www.kr.txkeyboards.com/",
+    "logo": "/img/brands/txkeyboard.webp"
+  },
+  {
+    "name": "Wuque Studio",
+    "url": "https://shop.wuquestudio.com/",
+    "logo": "/img/brands/wuquestudio.webp"
+  },
+  {
+    "name": "Outemu",
+    "url": "https://keebworks.com/outemu-red/",
+    "logo": "/img/brands/outemu.webp"
+  },
+  {
+    "name": "Logitech",
+    "url": "https://www.logitech.com/",
+    "logo": "/img/brands/logitech.png"
+  },
+  {
+    "name": "KeebStuff",
+    "url": "https://keebstuff.com/",
+    "logo": "/img/brands/keebstuff.png"
+  },
+  {
+    "name": "MVKB",
+    "url": "https://mvkb.com/",
+    "logo": "/img/brands/mvkb.png"
+  },
+  {
+    "name": "GMK",
+    "url": "https://www.gmk-electronic-design.de/",
+    "logo": "/img/brands/gmk.png"
+  }
+]

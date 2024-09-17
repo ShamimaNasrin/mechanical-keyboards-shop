@@ -7,28 +7,51 @@ type TProp = {
   description: string;
 };
 
+const services = [
+  {
+    title: "Top-notch Support",
+    description: "Our Teams does its best to answer every question within 24h.",
+  },
+  {
+    title: "Cash on Delivery",
+    description: "We provide cash on delivery to all over Bangladesh",
+  },
+  {
+    title: "Fast Shipping",
+    description: "All orders for in-stock items ship by the next business day!",
+  },
+  {
+    title: "Secure Payment",
+    description:
+      "All payments are securely processed to ensure customer safety.",
+  },
+];
+
 const AdvertiseService = () => {
   return (
     <>
       <div className="py-10 xl:px-16 lg:px-16 md:px-10 px-7 bg-gradient-to-b from-white to-zinc-200 ">
-        <h2 className="font-bold text-2xl mb-4">Why Us?</h2>
-        <div className="flex justify-between items-center gap-5">
-          <ServiceCard
-            title="Top-notch Support"
-            description="Our Teams does its best to answer every question within 24h."
-          />
-          <ServiceCard
-            title="Cash on Delivery"
-            description="We provide cash on delivery to all over Bangladesh"
-          />
-          <ServiceCard
-            title="Fast Shipping"
-            description="All orders for in-stock items ship by the next business day!"
-          />
-          <ServiceCard
-            title="Secure Payment"
-            description="All payments are securely processed to ensure customer safety."
-          />
+        <h2 className="font-bold text-4xl mb-4">Why Us?</h2>
+
+        <div className="container mx-auto px-4">
+          <div
+            className="
+          grid gap-4 
+          grid-cols-1
+          sm:grid-cols-2 
+          md:grid-cols-3 
+          lg:grid-cols-4 
+          xl:grid-cols-4
+        "
+          >
+            {services.map((service, i) => (
+              <ServiceCard
+                key={i}
+                title={service.title}
+                description={service.description}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>
