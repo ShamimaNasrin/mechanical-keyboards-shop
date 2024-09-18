@@ -60,7 +60,7 @@ const AdvertiseService = () => {
 
 const ServiceCard = ({ title, description }: TProp) => {
   return (
-    <div className="w-full h-[170px] bg-white p-5 shadow-lg flex flex-col justify-evenly items-center">
+    <div className="w-full h-[170px] bg-white p-5 shadow-lg flex flex-col justify-evenly items-center rounded-lg">
       {title === "Top-notch Support" ? (
         <MdSupportAgent className="text-purple-500 text-3xl" />
       ) : title === "Cash on Delivery" ? (
