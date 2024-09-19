@@ -1,5 +1,5 @@
-import { TiStar } from "react-icons/ti";
 import CardButton from "../buttons/CardButton";
+import StarRating from "../starRating/StarRating";
 
 type TProductProps = {
   img_url: string;
@@ -40,13 +40,14 @@ const ProductCard = ({
         </div>
 
         <div className="flex items-center mb-4">
-          {Array.from({ length: 5 }, (_, i) => (
-            <TiStar
-              key={i}
-              className={`text-yellow-500 ${i < rating ? "" : "opacity-30"}`}
-            />
-          ))}
+          <StarRating rating={rating} />
         </div>
+
+        {/* <Link to={`/servicedetails/${_id}`}>
+          <button className="btn mt-4 px-9 mx-auto block bg-blue-500 hover:bg-blue-700 border-0">
+            View details
+          </button>
+        </Link> */}
 
         <CardButton str="See Details" path="/productDetails" />
       </div>
