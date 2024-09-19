@@ -114,13 +114,6 @@ const Reviews = () => {
             <CustomerCard client={client} />
           </SwiperSlide>
         ))}
-        {/* <div className="">
-          {clients.map((client, i) => (
-            <SwiperSlide key={i}>
-              <CustomerCard client={client} />
-            </SwiperSlide>
-          ))}
-        </div> */}
       </Swiper>
     </div>
   );

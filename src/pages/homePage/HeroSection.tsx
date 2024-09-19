@@ -3,7 +3,7 @@ import BlackButton from "../../components/buttons/BlackButton";
 const HeroSection = () => {
   return (
     <div
-      className="bg-zinc-50 h-[90vh] bg-cover bg-center relative"
+      className="bg-zinc-50 xl:h-[90vh] lg:h-[90vh] md:h-[60vh] sm:h-[50vh] h-[50vh] bg-cover bg-center relative"
       style={{
         backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(${bannerimg})`,
       }}
@@ -14,7 +14,7 @@ const HeroSection = () => {
           Halloween sale!! Grab your favourite one on 50% discount!!
         </p>
 
-        <BlackButton str="Shop now" path="/about" />
+        <BlackButton str="Shop now" path="/products" />
       </div>
     </div>
   );

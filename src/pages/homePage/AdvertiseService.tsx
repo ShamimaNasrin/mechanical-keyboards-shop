@@ -7,7 +7,7 @@ type TProp = {
   description: string;
 };
 
-const services = [
+const services: TProp[] = [
   {
     title: "Top-notch Support",
     description: "Our Teams does its best to answer every question within 24h.",
