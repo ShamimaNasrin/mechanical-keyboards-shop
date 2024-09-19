@@ -49,15 +49,15 @@ const ProductDetails: React.FC<TProductDetailsProps> = ({ product }) => {
 
   return (
     <div className="bg-zinc-100 xl:py-12 lg:py-10 py-7 xl:px-20 lg:px-20 md:px-10 px-7 mx-auto">
-      <div className="flex">
-        <div className="w-[40%] flex justify-center items-center">
+      <div className="flex xl:flex-row lg:flex-row md:flex-row flex-col justify-center ">
+        <div className="xl:w-[40%] lg:w-[40%] md:w-[40%] w-full flex justify-center items-center">
           <img
             src={product.img_url}
             alt={product.name}
             className="w-[90%] object-cover mb-4"
           />
         </div>
-        <div className="w-[60%] px-5">
+        <div className="xl:w-[60%] lg:w-[60%] md:w-[60%] w-full px-5">
           <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
           <h3 className="text-lg text-gray-600 mb-2 font-semibold">
             {product.brand}
@@ -86,7 +86,8 @@ const ProductDetails: React.FC<TProductDetailsProps> = ({ product }) => {
                 : "hover:bg-gray-800"
             }`}
           >
-            {product?.quantity === 0 ? "Stock Out" : "Add to Cart"}
+            Add to Cart
+            {/* {product?.quantity === 0 ? "Stock Out" : "Add to Cart"} */}
           </button>
         </div>
       </div>
