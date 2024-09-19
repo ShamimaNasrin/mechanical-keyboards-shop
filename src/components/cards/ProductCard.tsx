@@ -19,7 +19,7 @@ const ProductCard = ({
   rating,
 }: TProductProps) => {
   return (
-    <div className=" bg-white rounded-md shadow-sm overflow-hidden hover:shadow-xl transition-shadow duration-300 border">
+    <div className=" bg-white rounded-md shadow-sm overflow-hidden hover:shadow-xl transition-shadow duration-300 ">
       <div className="overflow-hidden">
         <img
           src={img_url}

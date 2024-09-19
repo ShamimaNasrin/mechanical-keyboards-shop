@@ -21,7 +21,7 @@ const NavBar = () => {
             className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
    text-white"
           >
-            <span className="text-3xl text-indigo-600 mr-1 pt-2">.</span>
+            {/* <span className="text-3xl text-indigo-600 mr-1 pt-2">.</span> */}
             KeyClicks
           </div>
         </Link>

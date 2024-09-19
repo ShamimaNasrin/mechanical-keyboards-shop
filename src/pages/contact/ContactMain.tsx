@@ -3,8 +3,15 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { ContactInfoProps } from "./ContactTypes";
+import { useEffect } from "react";
+import useTitle from "../../customHooks/useTitle";
 
 const ContactMain = () => {
+  //scrolltop
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useTitle("Contact");
   return (
     // <div className="contact relative min-h-screen py-12 px-24 flex flex-col justify-center items-center bg-cover bg-center bg-contact-bg">
 

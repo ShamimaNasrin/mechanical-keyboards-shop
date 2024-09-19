@@ -1,5 +1,12 @@
+import { useEffect } from "react";
 import redblackkey from "../../assets/images/redblackkey.jpg";
+import useTitle from "../../customHooks/useTitle";
 const About = () => {
+  //scrolltop
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useTitle("About");
   return (
     <div className=" relative min-h-screen xl:py-12 xl:px-16 lg:py-12 lg:px-16 md:p-8 sm:p-5 p-5 flex">
       {/* Blurred Background */}
