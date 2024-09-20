@@ -10,6 +10,7 @@ import DashboardMain from "../pages/dashboard/DashboardMain";
 import NotFound from "../pages/notFound/NotFound";
 import FaqsMain from "../pages/faqs/FaqsMain";
 import ProductDetails from "../pages/productDetails/ProductDetails";
+import SuccessPayment from "../pages/checkoutPage/SuccessPayment";
 
 type TProduct = {
   name: string;
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "checkout",
         element: <CheckOutMain />,
+      },
+      {
+        path: "success",
+        element: <SuccessPayment />,
       },
       {
         path: "dashboard",

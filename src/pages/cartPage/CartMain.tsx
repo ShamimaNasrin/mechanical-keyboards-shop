@@ -98,7 +98,7 @@ const CartMain = () => {
             className={`mt-4 px-4 py-2 font-medium text-white ${
               isCheckoutDisabled
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-500 hover:bg-blue-600"
+                : "bg-black hover:bg-gray-700"
             }`}
             onClick={handleCheckout}
             disabled={isCheckoutDisabled}
