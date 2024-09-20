@@ -5,7 +5,7 @@ type TProduct = {
   name: string;
   img_url: string;
   brand: string;
-  quantity: number;
+  stock_quantity: number;
   price: number;
   rating: number;
   description: string;
@@ -30,7 +30,7 @@ const ProductDetails: React.FC<TProductDetailsProps> = ({ product }) => {
       );
 
       if (existingItem) {
-        if (existingItem.quantity < product.quantity) {
+        if (existingItem.quantity < product.stock_quantity) {
           return prevCart.map((item) =>
             item.product.name === product.name
               ? { ...item, quantity: item.quantity + 1 }
@@ -71,17 +71,17 @@ const ProductDetails: React.FC<TProductDetailsProps> = ({ product }) => {
           </div>
           <p className="text-xl font-bold mb-2">TK.{product.price}</p>
           <p className="text-gray-700 mb-2">
-            {product?.quantity > 0
-              ? `In Stock (${product?.quantity} Pieces available)`
+            {product?.stock_quantity > 0
+              ? `In Stock (${product?.stock_quantity} Pieces available)`
               : "Stock Out"}
           </p>
           <p className="text-gray-700 mb-4">{product.description}</p>
 
           <button
             onClick={handleAddToCart}
-            disabled={product?.quantity === 0}
+            disabled={product?.stock_quantity === 0}
             className={`bg-black text-white mx-auto text-sm px-3 py-2 transition-all duration-500  ${
-              product?.quantity === 0
+              product?.stock_quantity === 0
                 ? "opacity-50 cursor-not-allowed"
                 : "hover:bg-gray-800"
             }`}

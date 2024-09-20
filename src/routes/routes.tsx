@@ -15,7 +15,7 @@ type TProduct = {
   name: string;
   img_url: string;
   brand: string;
-  quantity: number;
+  stock_quantity: number;
   price: number;
   rating: number;
   description: string;
@@ -25,7 +25,7 @@ const sampleProduct: TProduct = {
   name: "Awekeys Mechanical Keyboard Moon Landing [GB]",
   img_url: "https://i.ibb.co.com/BP8BKZf/moon-landing-15.webp",
   brand: "Awekeys",
-  quantity: 4,
+  stock_quantity: 4,
   price: 2800,
   rating: 3,
   description:

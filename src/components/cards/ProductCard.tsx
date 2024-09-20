@@ -5,7 +5,7 @@ type TProductProps = {
   img_url: string;
   name: string;
   brand: string;
-  quantity: number;
+  stock_quantity: number;
   price: number;
   rating: number;
 };
@@ -14,7 +14,7 @@ const ProductCard = ({
   img_url,
   name,
   brand,
-  quantity,
+  stock_quantity,
   price,
   rating,
 }: TProductProps) => {
@@ -33,7 +33,7 @@ const ProductCard = ({
           {name?.length > 50 ? name?.slice(0, 50) + "..." : name}
         </h2>
         <p className="text-sm text-gray-500 mb-1">Brand: {brand}</p>
-        <p className="text-sm text-gray-500 mb-3">InStock: {quantity}</p>
+        <p className="text-sm text-gray-500 mb-3">InStock: {stock_quantity}</p>
 
         <div className="flex items-center mb-3">
           <p className="text-xl font-semibold text-gray-800">TK.{price}</p>
