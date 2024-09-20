@@ -5,6 +5,7 @@ import FeaturedProds from "./FeaturedProds";
 import HeroSection from "./HeroSection";
 import Reviews from "./Reviews";
 import useTitle from "../../customHooks/useTitle";
+import CustomSection from "./CustomSection";
 
 const HomeMain = () => {
   //scrolltop
@@ -17,6 +18,7 @@ const HomeMain = () => {
       <HeroSection />
       <AdvertiseService />
       <FeaturedProds />
+      <CustomSection />
       <Reviews />
       <FeaturedBrands />
     </div>
