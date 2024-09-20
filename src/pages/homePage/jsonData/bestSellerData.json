@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Leopold FC750R PD Mechanical Keyboard",
+    "img_url": "https://i.ibb.co.com/kc4HhR3/Keychron-Q3-Pro-QMK-VIA-wireless-custom-mechanical-keyboard-tenkeyless-layout-full-aluminum-white-fr.webp",
+    "brand": "Leopold",
+    "stock_quantity": 25,
+    "price": 11500,
+    "rating": 5
+  },
+  {
+    "name": "HyperX Alloy FPS Pro Mechanical Keyboard",
+    "img_url": "https://i.ibb.co.com/KDk6wkJ/1-54073600-91a4-4540-829d-20b77891900d.webp",
+    "brand": "HyperX",
+    "stock_quantity": 45,
+    "price": 7500,
+    "rating": 4
+  },
+  {
+    "name": "KKB Pumpkin Spice Latte Mechanical Keyboard",
+    "img_url": "https://i.ibb.co.com/1TC2Hfp/6a.webp",
+    "brand": "Keykobo",
+    "stock_quantity": 25,
+    "price": 6599,
+    "rating": 5
+  },
+  {
+    "name": "Royal Kludge RK61 Wireless Mechanical Keyboard",
+    "img_url": "https://i.ibb.co.com/BP8BKZf/moon-landing-15.webp",
+    "brand": "Royal Kludge",
+    "stock_quantity": 75,
+    "price": 6000,
+    "rating": 3
+  }
+]

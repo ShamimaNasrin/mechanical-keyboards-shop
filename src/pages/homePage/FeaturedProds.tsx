@@ -26,7 +26,7 @@ const FeaturedProds = () => {
                     img_url={prod?.img_url}
                     name={prod?.name}
                     brand={prod?.brand}
-                    quantity={prod?.quantity}
+                    stock_quantity={prod?.stock_quantity}
                     price={prod?.price}
                     rating={prod?.rating}
                   />
