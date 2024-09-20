@@ -15,7 +15,7 @@ const ContactMain = () => {
   return (
     // <div className="contact relative min-h-screen py-12 px-24 flex flex-col justify-center items-center bg-cover bg-center bg-contact-bg">
 
-    <div className="contact relative min-h-screen py-12 px-24 flex flex-col justify-center items-center">
+    <div className="contact relative min-h-screen xl:py-20 lg:py-20 py-7 xl:px-24 lg:px-24 md:px-10 px-7 flex flex-col justify-center items-center">
       {/* Blurred Background */}
       <div className="absolute inset-0 bg-contact-bg bg-cover bg-center filter blur-xs"></div>
 
@@ -28,7 +28,7 @@ const ContactMain = () => {
         </p>
       </div>
 
-      <div className="container w-full flex justify-center items-center mt-8 flex-wrap z-10">
+      <div className="container xl:w-[80%] lg:w-[70%] flex justify-center items-center mt-8 flex-wrap z-10">
         {/* Contact Info Section */}
         <div className="contactInfo w-full lg:w-1/2 flex flex-col items-start space-y-6 my-2">
           <ContactInfo label="Address" value="null" />
@@ -37,9 +37,9 @@ const ContactMain = () => {
         </div>
 
         {/* Contact Form */}
-        <div className="contactForm w-full lg:w-2/5 mt-4 bg-white p-8 shadow-lg ">
+        <div className="contactForm w-full lg:w-1/2 mt-4 bg-white p-8 shadow-lg ">
           <form>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+            <h2 className="text-2xl text-center font-semibold text-gray-800 mb-6">
               Send Message
             </h2>
 
@@ -91,7 +91,7 @@ const ContactInfo = ({ label, value }: ContactInfoProps) => {
 
 const InputField = ({ textValue }: { textValue: string }) => {
   return (
-    <div className="inputBox relative w-full mb-6">
+    <div className="inputBox relative w-full mb-6 ">
       {textValue === "Type your message" ? (
         <textarea
           className="w-full border-b-2 border-gray-300 focus:border-pink-500 outline-none py-2"
@@ -100,11 +100,11 @@ const InputField = ({ textValue }: { textValue: string }) => {
       ) : (
         <input
           type="text"
-          className="w-full border-b-2 border-gray-300 focus:border-pink-500 outline-none py-2"
+          className="w-full border-b-2 border-gray-300 focus:border-pink-500 outline-none pb-2 pt-4"
           required
         />
       )}
-      <span className="absolute left-0 text-gray-500 pointer-events-none text-[16px] py-[5px] px-0 my-[10px] mx-0">
+      <span className="absolute left-0 text-gray-500 pointer-events-none text-[16px] py-[5px] px-0 my-[10px] mx-0 transition-all duration-300 ease-in-out">
         {textValue}
       </span>
     </div>

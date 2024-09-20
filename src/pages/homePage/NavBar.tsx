@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { RiCloseLargeFill } from "react-icons/ri";
 import { PiShoppingCartSimple } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import "./styles/navbar.css";
 
 const NavBar = () => {
   const links = [
@@ -43,7 +44,7 @@ const NavBar = () => {
               key={link.name}
               className="md:ml-8 text-base md:my-0 my-7 text-white hover:text-gray-400 duration-500"
             >
-              <Link to={link.path}>{link.name}</Link>
+              <NavLink to={link.path}>{link.name}</NavLink>
             </li>
           ))}
           <Link to="/cart">

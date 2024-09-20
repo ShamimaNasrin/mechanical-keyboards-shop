@@ -90,13 +90,13 @@ const Reviews = () => {
         grabCursor={true}
         centeredSlides={true}
         loop={true}
-        slidesPerView={3}
+        slidesPerView={5}
         spaceBetween={0}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
           depth: 150,
-          modifier: 3,
+          modifier: 2.5,
           slideShadows: false,
         }}
         autoplay={{
