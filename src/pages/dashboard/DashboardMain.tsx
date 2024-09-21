@@ -5,7 +5,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 import ConfirmationModal from "./ConfirmationModal";
 
-type Product = {
+type TProduct = {
   id: number;
   name: string;
   price: number;
@@ -17,7 +17,7 @@ type Product = {
 };
 
 const DashboardMain: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([
+  const [products, setProducts] = useState<TProduct[]>([
     // Example product
     {
       id: 1,
@@ -34,16 +34,16 @@ const DashboardMain: React.FC = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<TProduct | null>(null);
 
-  const handleAddProduct = (newProduct: Product) => {
+  const handleAddProduct = (newProduct: TProduct) => {
     setProducts([...products, newProduct]);
     setShowAddModal(false);
     toast.success("Product added successfully!");
     console.log("Product added:", newProduct);
   };
 
-  const handleUpdateProduct = (updatedProduct: Product) => {
+  const handleUpdateProduct = (updatedProduct: TProduct) => {
     setProducts(
       products.map((product) =>
         product.id === updatedProduct.id ? updatedProduct : product

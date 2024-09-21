@@ -13,6 +13,7 @@ import ProductDetails from "../pages/productDetails/ProductDetails";
 import SuccessPayment from "../pages/checkoutPage/SuccessPayment";
 
 type TProduct = {
+  id: number;
   name: string;
   img_url: string;
   brand: string;
@@ -23,6 +24,7 @@ type TProduct = {
 };
 
 const sampleProduct: TProduct = {
+  id: 123,
   name: "Awekeys Mechanical Keyboard Moon Landing [GB]",
   img_url: "https://i.ibb.co.com/BP8BKZf/moon-landing-15.webp",
   brand: "Awekeys",

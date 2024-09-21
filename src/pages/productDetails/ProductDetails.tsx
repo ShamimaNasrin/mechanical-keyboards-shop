@@ -1,7 +1,12 @@
-import { useState } from "react";
+// import { useState } from "react";
 import StarRating from "../../components/starRating/StarRating";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { addToCart } from "../../redux/features/cartSlice";
+import { RootState } from "../../redux/store";
+import toast from "react-hot-toast";
 
 type TProduct = {
+  id: number;
   name: string;
   img_url: string;
   brand: string;
@@ -9,11 +14,7 @@ type TProduct = {
   price: number;
   rating: number;
   description: string;
-};
-
-type TCartItem = {
-  product: TProduct;
-  quantity: number;
+  quantity?: number;
 };
 
 type TProductDetailsProps = {
@@ -21,31 +22,28 @@ type TProductDetailsProps = {
 };
 
 const ProductDetails: React.FC<TProductDetailsProps> = ({ product }) => {
-  const [cart, setCart] = useState<TCartItem[]>([]);
+  const dispatch = useAppDispatch();
+  const cartState = useAppSelector((state: RootState) => state.cart.products);
 
-  const handleAddToCart = () => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find(
-        (item) => item.product.name === product.name
-      );
+  // console.log("cartState", cartState);
 
-      if (existingItem) {
-        if (existingItem.quantity < product.stock_quantity) {
-          return prevCart.map((item) =>
-            item.product.name === product.name
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          );
+  const handleAddToCart = (product: TProduct) => {
+    const quantity = 1;
+
+    if (cartState.length === 0) {
+      dispatch(addToCart({ product, quantity }));
+    } else {
+      cartState.map((item) => {
+        if (item.id === product.id) {
+          if (item.quantity! < item.stock_quantity) {
+            dispatch(addToCart({ product, quantity }));
+          } else {
+            toast.error(`Limit exceeded for this item`);
+          }
         }
-        alert("Cannot add more than available quantity.");
-        return prevCart;
-      } else {
-        return [...prevCart, { product, quantity: 1 }];
-      }
-    });
+      });
+    }
   };
-
-  console.log("cart info:", cart);
 
   return (
     <div className="bg-zinc-100 xl:py-12 lg:py-10 py-7 xl:px-20 lg:px-20 md:px-10 px-7 mx-auto">
@@ -78,7 +76,7 @@ const ProductDetails: React.FC<TProductDetailsProps> = ({ product }) => {
           <p className="text-gray-700 mb-4">{product.description}</p>
 
           <button
-            onClick={handleAddToCart}
+            onClick={() => handleAddToCart(product)}
             disabled={product?.stock_quantity === 0}
             className={`bg-black text-white mx-auto text-sm px-3 py-2 transition-all duration-500  ${
               product?.stock_quantity === 0
@@ -86,8 +84,7 @@ const ProductDetails: React.FC<TProductDetailsProps> = ({ product }) => {
                 : "hover:bg-gray-800"
             }`}
           >
-            Add to Cart
-            {/* {product?.quantity === 0 ? "Stock Out" : "Add to Cart"} */}
+            {product?.stock_quantity === 0 ? "Stock Out" : "Add to Cart"}
           </button>
         </div>
       </div>

@@ -32,7 +32,7 @@ const FaqsMain = () => {
         <div key={i} className="my-3">
           <h4 className="text-[19px] text-gray-600 font-bold">{faq.ques}</h4>
           <p className="mt-1 mb-3 lg:text-[17px] text-base text-gray-600">
-            K{faq.ans}
+            {faq.ans}
           </p>
         </div>
       ))}

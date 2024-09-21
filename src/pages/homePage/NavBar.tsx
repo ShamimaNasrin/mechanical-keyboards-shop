@@ -3,8 +3,13 @@ import { RiCloseLargeFill } from "react-icons/ri";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import { Link, NavLink } from "react-router-dom";
 import "./styles/navbar.css";
+import { useAppSelector } from "../../redux/hooks";
+import { RootState } from "../../redux/store";
 
 const NavBar = () => {
+  const totalItemSelectQuantity = useAppSelector(
+    (state: RootState) => state.cart.totalItemSelectQuantity
+  );
   const links = [
     { name: "Home", path: "/home" },
     { name: "Products", path: "/products" },
@@ -47,9 +52,15 @@ const NavBar = () => {
               <NavLink to={link.path}>{link.name}</NavLink>
             </li>
           ))}
-          <Link to="/cart">
-            <PiShoppingCartSimple className="text-white text-xl xl:ml-7 lg:ml-7 md:ml-7 " />
-          </Link>
+
+          <div className="relative">
+            <Link to="/cart">
+              <PiShoppingCartSimple className="text-white text-xl xl:ml-7 lg:ml-7 md:ml-7" />
+            </Link>
+            <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center">
+              {totalItemSelectQuantity}
+            </span>
+          </div>
         </ul>
       </div>
     </div>
