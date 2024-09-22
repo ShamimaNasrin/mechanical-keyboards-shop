@@ -15,14 +15,12 @@ type TProduct = {
 type TCartState = {
   products: (TProduct & { quantity?: number })[];
   totalPrice: number;
-  fTotalPrice: number;
   totalItemSelectQuantity: number;
 };
 
 const initialState: TCartState = {
   products: [],
   totalPrice: 0,
-  fTotalPrice: 0,
   totalItemSelectQuantity: 0,
 };
 
@@ -57,7 +55,6 @@ export const cartSlice = createSlice({
       }
       state.totalItemSelectQuantity = calculateTotalItemSelectQuantity(state);
       state.totalPrice = calculateTotalPrice(state);
-      state.fTotalPrice = state.totalPrice;
     },
 
     quantityIncrement: (state, action) => {
@@ -66,7 +63,6 @@ export const cartSlice = createSlice({
         product.quantity! += 1;
         state.totalItemSelectQuantity = calculateTotalItemSelectQuantity(state);
         state.totalPrice = calculateTotalPrice(state);
-        state.fTotalPrice = state.totalPrice;
       }
     },
     quantityDecrement: (state, action) => {
@@ -75,7 +71,6 @@ export const cartSlice = createSlice({
         product.quantity! -= 1;
         state.totalItemSelectQuantity = calculateTotalItemSelectQuantity(state);
         state.totalPrice = calculateTotalPrice(state);
-        state.fTotalPrice = state.totalPrice;
       }
     },
     removeFromCart: (state, action) => {
@@ -83,7 +78,6 @@ export const cartSlice = createSlice({
       state.products = state.products.filter((item) => item.id !== productId);
       state.totalItemSelectQuantity = calculateTotalItemSelectQuantity(state);
       state.totalPrice = calculateTotalPrice(state);
-      state.fTotalPrice = state.totalPrice;
     },
   },
 });
