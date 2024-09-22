@@ -8,6 +8,7 @@ import {
   quantityIncrement,
   removeFromCart,
 } from "../../redux/features/cartSlice";
+import { useEffect } from "react";
 
 type TProduct = {
   id: number;
@@ -41,6 +42,22 @@ const CartMain = () => {
   const isCheckoutDisabled = products.some(
     (prod) => prod.quantity! > prod?.stock_quantity
   );
+
+  // Warn user before refreshing or leaving the page if cart is not empty
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      if (products.length > 0) {
+        event.preventDefault();
+        event.returnValue = "";
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [products]);
 
   return (
     <div className="bg-zinc-100 xl:py-12 lg:py-10 py-7 xl:px-20 lg:px-20 md:px-10 px-7 mx-auto w-full min-h-[70vh] ">
