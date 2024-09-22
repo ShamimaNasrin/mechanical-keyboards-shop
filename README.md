@@ -59,9 +59,9 @@ The primary objective of **KeyClicks** is to deliver a top-notch online shopping
 
 2. Run the app:
 
-```npm run dev
-
-```
+````bash
+  npm run dev
+  ```
 
 ## Usage
 
@@ -81,3 +81,4 @@ With the backend server up and running, it will be accessible on the port define
 - Utilize the API to fetch, create, update, or delete product data.
 - Manage user authentication and authorization using JWT tokens.
 - Handle administrative tasks like inventory management and order processing through the provided endpoints.
+````
