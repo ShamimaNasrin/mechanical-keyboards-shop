@@ -12,29 +12,6 @@ import FaqsMain from "../pages/faqs/FaqsMain";
 import ProductDetails from "../pages/productDetails/ProductDetails";
 import SuccessPayment from "../pages/checkoutPage/SuccessPayment";
 
-type TProduct = {
-  id: number;
-  name: string;
-  img_url: string;
-  brand: string;
-  stock_quantity: number;
-  price: number;
-  rating: number;
-  description: string;
-};
-
-const sampleProduct: TProduct = {
-  id: 123,
-  name: "Awekeys Mechanical Keyboard Moon Landing [GB]",
-  img_url: "https://i.ibb.co.com/BP8BKZf/moon-landing-15.webp",
-  brand: "Awekeys",
-  stock_quantity: 4,
-  price: 2800,
-  rating: 3,
-  description:
-    "A limited edition mechanical keyboard inspired by the moon landing. Features tactile switches, customizable RGB lighting, and a unique design.",
-};
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -53,18 +30,10 @@ const router = createBrowserRouter([
         element: <ProductsMain />,
       },
       {
-        path: "productDetails",
-        element: (
-          <div>
-            <ProductDetails product={sampleProduct} />
-          </div>
-        ),
+        path: "productDetails/:id",
+        element: <ProductDetails />,
       },
-      // {
-      //   path: '/servicedetails/:serviceid',
-      //   element: <ServiceDetails></ServiceDetails>,
-      //   loader: ({ params }) => fetch(`https://dentist-server.vercel.app/services/${params.serviceid}`)
-      // },
+
       {
         path: "cart",
         element: <CartMain />,

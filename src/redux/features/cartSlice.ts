@@ -1,40 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type TProduct = {
-  id: number;
+type TCart = {
+  _id: string;
   name: string;
   img_url: string;
-  brand: string;
   stock_quantity: number;
   price: number;
-  rating: number;
-  description: string;
   quantity?: number;
 };
 
 type TCartState = {
-  products: (TProduct & { quantity?: number })[];
+  items: TCart[];
   totalPrice: number;
-  totalItemSelectQuantity: number;
+  // totalItemSelectQuantity: number;
 };
 
 const initialState: TCartState = {
-  products: [],
+  items: [],
   totalPrice: 0,
-  totalItemSelectQuantity: 0,
-};
-
-// to calculate total number of selected product quantity
-const calculateTotalItemSelectQuantity = (state: TCartState): number => {
-  return state.products.reduce(
-    (total, item) => total + (item.quantity || 0),
-    0
-  );
+  // totalItemSelectQuantity: 0,
 };
 
 // to calculate the total price
 const calculateTotalPrice = (state: TCartState): number => {
-  return state.products.reduce(
+  // console.log("totalPrice called");
+  return state.items.reduce(
     (total, item) => total + item.price * (item.quantity || 0),
     0
   );
@@ -45,48 +35,53 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action) => {
-      const { quantity, product } = action.payload;
-      const isExist = state.products.find((item) => item.id === product.id);
+    addToCart: (state, action: PayloadAction<TCart>) => {
+      const product = action.payload;
+      const isExist = state.items.find((item) => item._id === product._id);
       if (isExist) {
-        isExist.quantity! += 1;
+        if (isExist.quantity! + product.quantity! <= product.stock_quantity) {
+          isExist.quantity! += product.quantity!;
+        } else {
+          alert("Limit exceeded");
+        }
       } else {
-        state.products.push({ ...product, quantity: quantity });
+        state.items.push(product);
       }
-      state.totalItemSelectQuantity = calculateTotalItemSelectQuantity(state);
+
       state.totalPrice = calculateTotalPrice(state);
     },
 
-    quantityIncrement: (state, action) => {
-      const product = state.products.find((item) => item.id === action.payload);
-      if (product) {
-        product.quantity! += 1;
-        state.totalItemSelectQuantity = calculateTotalItemSelectQuantity(state);
-        state.totalPrice = calculateTotalPrice(state);
+    quantityUpdate: (
+      state,
+      action: PayloadAction<{ _id: string; quantity: number }>
+    ) => {
+      const { _id, quantity } = action.payload;
+      const isExist = state.items.find((item) => item._id === _id);
+
+      if (isExist && quantity <= isExist.stock_quantity && quantity >= 1) {
+        // Create a new array for immutability
+        const updatedItems = state.items.map((item) =>
+          item._id === _id ? { ...item, quantity } : item
+        );
+        state.items = updatedItems;
       }
-    },
-    quantityDecrement: (state, action) => {
-      const product = state.products.find((item) => item.id === action.payload);
-      if (product && product.quantity! > 1) {
-        product.quantity! -= 1;
-        state.totalItemSelectQuantity = calculateTotalItemSelectQuantity(state);
-        state.totalPrice = calculateTotalPrice(state);
-      }
-    },
-    removeFromCart: (state, action) => {
-      const productId = action.payload;
-      state.products = state.products.filter((item) => item.id !== productId);
-      state.totalItemSelectQuantity = calculateTotalItemSelectQuantity(state);
       state.totalPrice = calculateTotalPrice(state);
+    },
+
+    removeFromCart: (state, action: PayloadAction<string>) => {
+      state.items = state.items.filter((item) => item._id !== action.payload);
+      state.totalPrice = calculateTotalPrice(state);
+    },
+
+    reSetCart: (state) => {
+      // console.log("reSetCart triggered");
+      state.items = [];
+      state.totalPrice = 0;
     },
   },
 });
 
-export const {
-  addToCart,
-  removeFromCart,
-  quantityIncrement,
-  quantityDecrement,
-} = cartSlice.actions;
+export const { addToCart, quantityUpdate, removeFromCart, reSetCart } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

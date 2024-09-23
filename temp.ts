@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// base API configuration
+// Define the base API configuration
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/api/products",
   }),
-  tagTypes: ["Products", "Product", "filteredItem"],
+  tagTypes: ["Products", "FilterProducts", "Product"],
   endpoints: (builder) => ({
     // Mutation to add a new product
     addProduct: builder.mutation({
@@ -27,13 +27,45 @@ export const baseApi = createApi({
       providesTags: ["Products"],
     }),
 
+    // Query to fetch products with filters applied
+    fetchFilteredProducts: builder.query({
+      query: (filterParams) => {
+        const searchParams = new URLSearchParams();
+        if (filterParams?.search)
+          searchParams.append("search", filterParams.search);
+        if (filterParams?.sortBy)
+          searchParams.append("sortBy", filterParams.sortBy);
+        if (filterParams?.minPrice)
+          searchParams.append("minPrice", filterParams.minPrice);
+        if (filterParams?.maxPrice)
+          searchParams.append("maxPrice", filterParams.maxPrice);
+
+        return {
+          url: "/",
+          method: "GET",
+          params: searchParams,
+        };
+      },
+      providesTags: ["FilterProducts"],
+    }),
+
     // Query to get a product by ID
-    fetchSingleProductById: builder.query({
+    fetchProductById: builder.query({
       query: (productId) => ({
         url: `/${productId}`,
         method: "GET",
       }),
       providesTags: ["Product"],
+    }),
+
+    // Mutation to update an existing product
+    updateProduct: builder.mutation({
+      query: ({ productId, updatedData }) => ({
+        url: `/${productId}`,
+        method: "PUT",
+        body: updatedData,
+      }),
+      invalidatesTags: ["Products", "FilterProducts", "Product"],
     }),
 
     // Mutation to delete a product by ID
@@ -42,39 +74,7 @@ export const baseApi = createApi({
         url: `/${productId}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Products", "Product", "filteredItem"],
-    }),
-
-    // Query to fetch products with filters applied
-    fetchFilteredItems: builder.query({
-      query: (filterParams) => {
-        const searchParams = new URLSearchParams();
-        if (filterParams?.search)
-          searchParams.append("search", filterParams.search);
-        if (filterParams?.minPrice)
-          searchParams.append("minPrice", filterParams.minPrice);
-        if (filterParams?.maxPrice)
-          searchParams.append("maxPrice", filterParams.maxPrice);
-        if (filterParams?.sortBy)
-          searchParams.append("sortBy", filterParams.sortBy);
-
-        return {
-          url: "/",
-          method: "GET",
-          params: searchParams,
-        };
-      },
-      providesTags: ["filteredItem"],
-    }),
-
-    // Mutation to update an existing product
-    updateProduct: builder.mutation({
-      query: ({ productId, data }) => ({
-        url: `/${productId}`,
-        method: "PUT",
-        body: data,
-      }),
-      invalidatesTags: ["Products", "Product", "filteredItem"],
+      invalidatesTags: ["Products", "FilterProducts", "Product"],
     }),
   }),
 });
@@ -82,8 +82,8 @@ export const baseApi = createApi({
 // Export hooks for API endpoints
 export const {
   useFetchAllProductsQuery,
-  useFetchFilteredItemsQuery,
-  useFetchSingleProductByIdQuery,
+  useFetchFilteredProductsQuery,
+  useFetchProductByIdQuery,
   useAddProductMutation,
   useUpdateProductMutation,
   useRemoveProductMutation,

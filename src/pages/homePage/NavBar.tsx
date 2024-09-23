@@ -8,7 +8,7 @@ import { RootState } from "../../redux/store";
 
 const NavBar = () => {
   const totalItemSelectQuantity = useAppSelector(
-    (state: RootState) => state.cart.totalItemSelectQuantity
+    (state: RootState) => state.cart.items
   );
   const links = [
     { name: "Home", path: "/home" },
@@ -58,7 +58,7 @@ const NavBar = () => {
               <PiShoppingCartSimple className="text-white text-xl xl:ml-7 lg:ml-7 md:ml-7" />
             </Link>
             <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center">
-              {totalItemSelectQuantity}
+              {totalItemSelectQuantity?.length}
             </span>
           </div>
         </ul>

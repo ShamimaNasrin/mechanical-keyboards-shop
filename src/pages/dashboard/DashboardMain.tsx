@@ -1,66 +1,90 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ProductForm from "./AddProductModal";
 import { AiOutlineEdit } from "react-icons/ai";
 import { FiTrash2 } from "react-icons/fi";
 import ConfirmationModal from "./ConfirmationModal";
+import useTitle from "../../customHooks/useTitle";
+import { IProduct, TProduct } from "../../types";
+import {
+  useFetchAllProductsQuery,
+  useAddProductMutation,
+  useRemoveProductMutation,
+  useUpdateProductMutation,
+} from "../../redux/api/baseApi";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import NoDataFound from "../../components/NoDataFound";
 
-type TProduct = {
-  id: number;
-  name: string;
-  price: number;
-  brand: string;
-  description: string;
-  stock_quantity: number;
-  rating: number;
-  img_url: string;
-};
+const headings = ["Name", "Price", "Brand", "Actions"];
 
 const DashboardMain: React.FC = () => {
-  const [products, setProducts] = useState<TProduct[]>([
-    // Example product
-    {
-      id: 1,
-      name: "Mechanical Keyboard",
-      price: 99,
-      brand: "Keychron",
-      description: "A great mechanical keyboard.",
-      stock_quantity: 10,
-      rating: 4,
-      img_url: "https://example.com/image.jpg",
-    },
-  ]);
-
   const [showAddModal, setShowAddModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<TProduct | null>(null);
 
-  const handleAddProduct = (newProduct: TProduct) => {
-    setProducts([...products, newProduct]);
+  const { data, isLoading } = useFetchAllProductsQuery({});
+  const [addProduct] = useAddProductMutation();
+  const [deleteProduct] = useRemoveProductMutation();
+  const [updateProduct] = useUpdateProductMutation();
+
+  // console.log("dashboard data:", data);
+
+  const handleAddProduct = async (newProduct: TProduct) => {
+    // console.log("Product added:", newProduct);
+
+    try {
+      const res = await addProduct(newProduct).unwrap();
+      if (res?.success) {
+        console.log("add res:", res?.message);
+        toast.success("Product added successfully!");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to Add product");
+    }
+
     setShowAddModal(false);
-    toast.success("Product added successfully!");
-    console.log("Product added:", newProduct);
   };
 
-  const handleUpdateProduct = (updatedProduct: TProduct) => {
-    setProducts(
-      products.map((product) =>
-        product.id === updatedProduct.id ? updatedProduct : product
-      )
-    );
+  const handleUpdateProduct = async (updatedProduct: IProduct) => {
+    // console.log("Product updated:", updatedProduct);
+    const productId = updatedProduct._id;
+    try {
+      const res = await updateProduct({
+        productId,
+        data: updatedProduct,
+      }).unwrap();
+      if (res?.success) {
+        console.log("update res:", res?.message);
+        toast.success("Product updated successfully!");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to update product");
+    }
     setShowUpdateModal(false);
-    toast.success("Product updated successfully!");
-    console.log("Product added:", updatedProduct);
   };
 
-  const handleDeleteProduct = (id: number) => {
-    setProducts(products.filter((product) => product.id !== id));
+  const handleDeleteProduct = async (id: string) => {
+    try {
+      const res = await deleteProduct(id).unwrap();
+      if (res?.success) {
+        console.log("delete res:", res?.message);
+        toast.success("Product deleted successfully!");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to Delete product");
+    }
     setShowDeleteModal(false);
-    toast.success("Product deleted successfully!");
   };
 
-  // console.log("Product all", products);
+  //scrolltop
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useTitle("Dashboard");
 
   return (
     <div className="min-h-[70vh] xl:py-12 lg:py-10 py-7 xl:px-16 lg:px-16 md:px-10 px-7 bg-zinc-100">
@@ -73,57 +97,66 @@ const DashboardMain: React.FC = () => {
           Add Product
         </button>
       </div>
-      <table className="mx-auto xl:w-[80%] lg:w-[80%] md:w-[70%] w-full text-left table-auto border-collapse">
-        <thead>
-          <tr>
-            <th className="border-b border-gray-700 px-2 py-4">Name</th>
-            <th className="border-b border-gray-700 px-2 py-4">Price</th>
-            <th className="border-b border-gray-700 px-2 py-4">Brand</th>
-            <th className="border-b border-gray-700 px-2 py-4">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
-              <td className="border-b border-gray-800 px-2 py-4">
-                {product.name}
-              </td>
-              <td className="border-b border-gray-800 px-2 py-4">
-                TK.{product.price}
-              </td>
-              <td className="border-b border-gray-800 px-2 py-4">
-                {product.brand}
-              </td>
-              <td className="border-b border-gray-800 px-2 py-4">
-                <button
-                  onClick={() => {
-                    setSelectedProduct(product);
-                    setShowUpdateModal(true);
-                  }}
-                  className="mr-2 text-lg"
-                >
-                  <AiOutlineEdit />
-                </button>
-                <button
-                  onClick={() => {
-                    // setSelectedProduct(product);
-                    setShowDeleteModal(true);
-                  }}
-                  className="text-lg text-red-600"
-                >
-                  <FiTrash2 />
-                </button>
-
-                <ConfirmationModal
-                  isOpen={showDeleteModal}
-                  onClose={() => setShowDeleteModal(false)}
-                  onConfirm={() => handleDeleteProduct(product.id)}
-                />
-              </td>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <table className="mx-auto xl:w-[80%] lg:w-[80%] md:w-[70%] w-full text-left table-auto border-collapse">
+          <thead>
+            <tr>
+              {headings.map((h, i) => (
+                <th key={i} className="border-b border-gray-700 px-2 py-4">
+                  {h}
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data?.data?.length ? (
+              data?.data?.map((product: TProduct) => (
+                <tr key={product._id}>
+                  <td className="border-b border-gray-800 px-2 py-4">
+                    {product.name}
+                  </td>
+                  <td className="border-b border-gray-800 px-2 py-4">
+                    TK.{product.price}
+                  </td>
+                  <td className="border-b border-gray-800 px-2 py-4">
+                    {product.brand}
+                  </td>
+                  <td className="border-b border-gray-800 px-2 py-4">
+                    <button
+                      onClick={() => {
+                        setSelectedProduct(product);
+                        setShowUpdateModal(true);
+                      }}
+                      className="mr-2 text-lg"
+                    >
+                      <AiOutlineEdit />
+                    </button>
+                    <button
+                      onClick={() => {
+                        // setSelectedProduct(product);
+                        setShowDeleteModal(true);
+                      }}
+                      className="text-lg text-red-600"
+                    >
+                      <FiTrash2 />
+                    </button>
+
+                    <ConfirmationModal
+                      isOpen={showDeleteModal}
+                      onClose={() => setShowDeleteModal(false)}
+                      onConfirm={() => handleDeleteProduct(product._id)}
+                    />
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <NoDataFound />
+            )}
+          </tbody>
+        </table>
+      )}
 
       {showAddModal && (
         <ProductForm

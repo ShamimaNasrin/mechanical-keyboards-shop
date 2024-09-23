@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import CardButton from "../buttons/CardButton";
 import StarRating from "../starRating/StarRating";
 
 type TProductProps = {
+  _id: string;
   img_url: string;
   name: string;
   brand: string;
@@ -11,6 +13,7 @@ type TProductProps = {
 };
 
 const ProductCard = ({
+  _id,
   img_url,
   name,
   brand,
@@ -18,6 +21,7 @@ const ProductCard = ({
   price,
   rating,
 }: TProductProps) => {
+  // console.log("id:", _id);
   return (
     <div className=" bg-white rounded-md shadow-sm overflow-hidden hover:shadow-xl transition-shadow duration-300 ">
       <div className="overflow-hidden">
@@ -43,13 +47,9 @@ const ProductCard = ({
           <StarRating rating={rating} />
         </div>
 
-        {/* <Link to={`/servicedetails/${_id}`}>
-          <button className="btn mt-4 px-9 mx-auto block bg-blue-500 hover:bg-blue-700 border-0">
-            View details
-          </button>
-        </Link> */}
-
-        <CardButton str="See Details" path="/productDetails" />
+        <Link to={`/productDetails/${_id}`}>
+          <CardButton str="See Details" path={`/productDetails/${_id}`} />
+        </Link>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { IProduct } from "../../types";
 
 interface ProductFormProps {
   setCloseModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,16 +16,17 @@ const ProductForm: React.FC<ProductFormProps> = ({
   isUpdating,
   product,
 }) => {
-  const [formData, setFormData] = useState({
-    id: product?.id || Date.now(),
-    name: product?.name || "",
-    price: product?.price || "",
-    brand: product?.brand || "",
-    description: product?.description || "",
-    stock_quantity: product?.stock_quantity || "",
-    rating: product?.rating || 0,
-    img_url: product?.img_url || "",
-  });
+  const [formData, setFormData] = useState<IProduct>(
+    product || {
+      name: "",
+      price: 0,
+      brand: "",
+      description: "",
+      stock_quantity: 0,
+      rating: 0,
+      img_url: "",
+    }
+  );
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -41,7 +43,8 @@ const ProductForm: React.FC<ProductFormProps> = ({
 
     setFormData({
       ...formData,
-      [name]: value,
+      [name]:
+        name === "price" || name === "stock_quantity" ? Number(value) : value,
     });
     setErrorMessage("");
   };

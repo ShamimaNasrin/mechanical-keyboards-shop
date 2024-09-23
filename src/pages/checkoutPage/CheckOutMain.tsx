@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { reSetCart } from "../../redux/features/cartSlice";
 
 const CheckOutMain: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [paymentMethod, setPaymentMethod] = useState<string>("");
 
@@ -57,6 +60,7 @@ const CheckOutMain: React.FC = () => {
       });
       return;
     } else {
+      dispatch(reSetCart());
       handlePlaceOrder();
     }
 

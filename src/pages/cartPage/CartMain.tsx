@@ -3,32 +3,26 @@ import { FiTrash2 } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
-import {
-  quantityDecrement,
-  quantityIncrement,
-  removeFromCart,
-} from "../../redux/features/cartSlice";
+import { quantityUpdate, removeFromCart } from "../../redux/features/cartSlice";
 import { useEffect } from "react";
+import useTitle from "../../customHooks/useTitle";
 
-type TProduct = {
-  id: number;
+type TCart = {
+  _id: string;
   name: string;
   img_url: string;
-  brand: string;
   stock_quantity: number;
   price: number;
-  rating: number;
-  description: string;
   quantity?: number;
 };
 
 type TCartItemProps = {
-  product: TProduct;
+  product: TCart;
 };
 
 const CartMain = () => {
   const navigate = useNavigate();
-  const products = useAppSelector((state: RootState) => state.cart.products);
+  const products = useAppSelector((state: RootState) => state.cart.items);
   const totalPrice = useAppSelector(
     (state: RootState) => state.cart.totalPrice
   );
@@ -59,6 +53,12 @@ const CartMain = () => {
     };
   }, [products]);
 
+  //scrolltop
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useTitle("Cart");
+
   return (
     <div className="bg-zinc-100 xl:py-12 lg:py-10 py-7 xl:px-20 lg:px-20 md:px-10 px-7 mx-auto w-full min-h-[70vh] ">
       {products.length ? (
@@ -73,7 +73,7 @@ const CartMain = () => {
           </div>
           <div>
             {products.map((item) => (
-              <CartItem key={item.id} product={item} />
+              <CartItem key={item._id} product={item} />
             ))}
           </div>
           <div className="mt-6 text-right">
@@ -119,21 +119,32 @@ const CartMain = () => {
 const CartItem: React.FC<TCartItemProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 
-  const handleIncrease = (id: number) => {
+  const handleIncrease = () => {
     if (product?.quantity && product?.quantity < product?.stock_quantity) {
-      dispatch(quantityIncrement(id));
+      dispatch(
+        quantityUpdate({
+          _id: product._id,
+          quantity: product.quantity + 1,
+        })
+      );
     } else {
       toast.error("Limit exceeded");
     }
   };
 
-  const handleDecrease = (id: number) => {
+  const handleDecrease = () => {
     if (product?.quantity && product?.quantity > 1) {
-      dispatch(quantityDecrement(id));
+      dispatch(
+        quantityUpdate({
+          _id: product._id,
+          quantity: product.quantity - 1,
+        })
+      );
     }
   };
-  const handleRemove = (id: number) => {
-    dispatch(removeFromCart(id));
+
+  const handleRemove = () => {
+    dispatch(removeFromCart(product._id));
   };
 
   const calculateSubtotal = () => {
@@ -156,14 +167,14 @@ const CartItem: React.FC<TCartItemProps> = ({ product }) => {
         <div className="px-[10px] py-[6px] flex items-center rounded border border-gray-400 ">
           <button
             className="w-[26px] h-[26px] text-sm font-medium text-gray-500 hover:text-black hover:bg-gray-300"
-            onClick={() => handleDecrease(product.id)}
+            onClick={handleDecrease}
           >
             -
           </button>
           <span className="mx-2 text-sm">{product.quantity}</span>
           <button
             className=" w-[26px] h-[26px] text-sm font-medium text-gray-500 hover:text-black hover:bg-gray-300"
-            onClick={() => handleIncrease(product.id)}
+            onClick={handleIncrease}
           >
             +
           </button>
@@ -175,7 +186,7 @@ const CartItem: React.FC<TCartItemProps> = ({ product }) => {
       <div className="text-right ">
         <button
           className="text-red-600 hover:text-red-800"
-          onClick={() => handleRemove(product.id)}
+          onClick={handleRemove}
         >
           <FiTrash2 size={20} />
         </button>

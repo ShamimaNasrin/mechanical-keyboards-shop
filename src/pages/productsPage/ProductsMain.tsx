@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ProductCard from "../../components/cards/ProductCard";
 import useTitle from "../../customHooks/useTitle";
 import useDebounce from "../../customHooks/useDebounce";
-import { useGetFilterProductQuery } from "../../redux/api/baseApi";
+import { useFetchFilteredItemsQuery } from "../../redux/api/baseApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import NoDataFound from "../../components/NoDataFound";
 import { TProduct } from "../../types";
@@ -19,7 +19,7 @@ const ProductsMain = () => {
 
   // console.log("byPriceRange", byPriceRange);
 
-  const { data, isLoading } = useGetFilterProductQuery({
+  const { data, isLoading } = useFetchFilteredItemsQuery({
     search: debounceValue,
     sortBy: sortByPrice,
     minPrice: byPriceRange.minPrice,
@@ -142,6 +142,7 @@ const ProductsMain = () => {
                 data?.data?.map((prod: TProduct) => (
                   <ProductCard
                     key={prod._id}
+                    _id={prod._id}
                     img_url={prod?.img_url}
                     name={prod?.name}
                     brand={prod?.brand}
