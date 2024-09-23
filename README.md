@@ -35,7 +35,7 @@ The primary objective of **KeyClicks** is to deliver a top-notch online shopping
 - **Frontend**: Built with `React` and `Vite`, leveraging `TypeScript` for type safety and maintainability.
 - **State Management**: Utilizes `Redux` and `RTK Query` for efficient state and data management.
 - **Backend**: Powered by `Node.js` and `Express.js`, with `MongoDB` as the database solution.
-- **Authentication**: Secured with `JWT` (JSON Web Tokens) for user authentication.
+<!-- - **Authentication**: Secured with `JWT` (JSON Web Tokens) for user authentication. -->
 - **Validation**: Uses `Zod` for robust schema validation.
 - **UI/UX**: Designed with responsiveness and usability in mind, ensuring a smooth experience across all devices.
 
