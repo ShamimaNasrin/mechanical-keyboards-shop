@@ -1,6 +1,6 @@
 # KeyClicks
 
-### Live Preview:
+### Live Preview: https://mechanical-keyboards-client.vercel.app/
 
 ## Introduction
 
